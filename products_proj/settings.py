@@ -57,7 +57,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            '/home/denis/Projects/test_env/products_proj/templates/products_proj',
+            '/home/denis/Projects/test_env/products_proj/templates',
             '/home/denis/Projects/test_env/products_proj/product/templates/product',
             '/home/denis/Projects/test_env/products_proj/loginsys/templates/loginsys',
         ],
