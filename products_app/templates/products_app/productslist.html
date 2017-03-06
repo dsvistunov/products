@@ -1,8 +1,0 @@
-{% extends 'index.html' %}
-
-{% block productslist %}
-    {% for product in products %}
-        <p><a href="{% url 'products:product' category_id product.id %}">{{ product.name }}</a> - {{ product.price }}</p>
-        <p>{{ product.description }}</p>
-        {% endfor %}
-{% endblock %}

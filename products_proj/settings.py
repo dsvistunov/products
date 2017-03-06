@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'go40b6hfmq)%8@715vhku-aa_!1#we2heh1o=(0z8atx8(zr9$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['testserver', 'localhost', '127.0.0.1', '::1']
 
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'products_app',
+    'product',
     'loginsys',
 ]
 
@@ -58,7 +58,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             '/home/denis/Projects/test_env/products_proj/templates/products_proj',
-            '/home/denis/Projects/test_env/products_proj/products_app/templates/products_app',
+            '/home/denis/Projects/test_env/products_proj/product/templates/product',
             '/home/denis/Projects/test_env/products_proj/loginsys/templates/loginsys',
         ],
         'APP_DIRS': True,
