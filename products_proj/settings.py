@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -38,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'product',
-    'loginsys',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +59,6 @@ TEMPLATES = [
         'DIRS': [
             '/home/denis/Projects/test_env/products_proj/templates',
             '/home/denis/Projects/test_env/products_proj/product/templates/product',
-            '/home/denis/Projects/test_env/products_proj/loginsys/templates/loginsys',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

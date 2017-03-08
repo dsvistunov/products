@@ -18,6 +18,5 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^', include('product.urls')),
-    url(r'^auth/', include('loginsys.urls')),
     url(r'^admin/', admin.site.urls),
 ]

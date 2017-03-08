@@ -5,12 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-    {% if username %}
-        <li><a href="{% url 'products:lastadded' %}">List added product for 24 hours</a</li>
-        <li><a href="{% url 'loginsys:logout' %}">Log out</a></li>
-    {% else %}
-        <a href="{% url 'loginsys:login' %}">Log in</a>
-    {% endif %}
 
     {% block categogyslist %}{% endblock %}
     {% block productslist %}{% endblock %}

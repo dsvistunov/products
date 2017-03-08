@@ -11,15 +11,18 @@ def categorylist(request):
     args['categorys'] = Category.objects.all()
     return render_to_response('categorylist.html', args)
 
-def productslist(request, category_id):
+
+def productslist(request, category_slug):
     args = {}
-    args['products'] = Product.objects.filter(category=category_id)
-    args['category_id'] = category_id
+    category = Category.objects.get(slug=category_slug)
+    args['products'] = Product.objects.filter(category=category.id)
+    args['category_slug'] = category_slug
     return render_to_response('productslist.html', args)
 
-def productditail(request, product_id, category_id):
+
+def productditail(request, product_slug, category_slug):
     args = {}
-    args['product'] = get_object_or_404(Product, pk=product_id)
+    args['product'] = get_object_or_404(Product, slug=product_slug)
     return render_to_response('productditail.html', args)
 
 def lastadded(request):

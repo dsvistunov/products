@@ -2,7 +2,8 @@
 
 {% block productslist %}
     {% for product in products %}
-        <p><a href="{% url 'products:product' category_id product.id %}">{{ product.name }}</a> - {{ product.price }}</p>
+        <p><a href="{% url 'products:product' category_slug product.slug %}">{{ product.name }}</a></p>
         <p>{{ product.description }}</p>
+        <p>{{ product.price }}</p>
         {% endfor %}
 {% endblock %}

@@ -1,11 +1,15 @@
 {% extends 'index.html' %}
 
 {% block categogyslist %}
+
+    {% if username %}
+        <li><a href="{% url 'products:lastadded' %}">List added product for 24 hours</a</li>
+    {% endif %}
+
     <ul>
     {% for category in categorys %}
         <li>
-            <p><a href="{% url 'products:productslist' category.id %}">{{ category.name }}</a></p>
-            <p>{{ category.slug }}</p>
+            <p><a href="{% url 'products:productslist' category.slug %}">{{ category.name }}</a></p>
             <p>{{ category.description }}</p>
         </li>
     {% endfor %}
