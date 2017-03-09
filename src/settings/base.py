@@ -14,7 +14,6 @@ import os
 from os.path import join, dirname
 from dotenv import load_dotenv
 
-
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
@@ -30,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = True # set up in deploy.py
 
 ALLOWED_HOSTS = ['testserver', 'localhost', '127.0.0.1', '::1']
 
@@ -57,7 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'products_proj.urls'
+ROOT_URLCONF = 'src.urls'
 
 TEMPLATES = [
     {
@@ -91,11 +90,10 @@ DATABASES = {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         },
         'NAME': 'products_db',
-        'USER': os.environ.get('USER'),
-        'PASSWORD': os.environ.get('PASSWORD'),
+        'USER': os.environ.get('USER_NAME'),
+        'PASSWORD': os.environ.get('SET_PASSWORD'),
         'HOST': 'localhost',
         'PORT': '',
-
     }
 }
 
@@ -137,3 +135,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
