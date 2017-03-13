@@ -1,6 +1,6 @@
 {% extends 'index.html' %}
 
-{% block productslist %}
+{% block content %}
     {% for product in products %}
         <p><a href="{% url 'products:product' category_slug product.slug %}">{{ product.name }}</a></p>
         <p>{{ product.description }}</p>
