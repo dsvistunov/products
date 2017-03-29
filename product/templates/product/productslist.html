@@ -1,5 +1,7 @@
 {% extends 'index.html' %}
 
+{% block title %}{% endblock %}
+
 {% block content %}
     {% for product in products %}
         <p><a href="{% url 'products:product' category_slug product.slug %}">{{ product.name }}</a></p>
