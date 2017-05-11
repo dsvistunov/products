@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^', include('product.urls')),
     url(r'^admin/', admin.site.urls),
+    url('^', include('django.contrib.auth.urls'), {'template_name': 'product/login.html'}),
+    url(r'^', include('product.urls')),
+
 ]

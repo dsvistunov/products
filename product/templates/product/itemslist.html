@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h3>Categories:</h3>
+    {% for item in home_list %}
+        <ul>
+            <li>
+                {{ item }}
+            </li>
+        </ul>
+    {% endfor %}
+    <h3>Products:</h3>
+    {% for item in products %}
+        <ul>
+            <li>
+                {{ item }}
+            </li>
+        </ul>
+    {% endfor %}
+{% endblock %}

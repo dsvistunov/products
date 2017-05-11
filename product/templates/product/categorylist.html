@@ -1,16 +1,15 @@
 {% extends 'index.html' %}
 
+{% block title %}Categories{% endblock %}
+
 {% block content %}
-
-    {% if username %}
-        <li><a href="{% url 'products:lastadded' %}">List added product for 24 hours</a</li>
-    {% endif %}
-
     <ul>
-    {% for category in categorys %}
+    {% for category in object_list %}
         <li>
             <p><a href="{% url 'products:productslist' category.slug %}">{{ category.name }}</a></p>
-            <p>{{ category.description }}</p>
+            <p>Slug: {{ category.slug }}</p>
+            <p>Description: {{ category.description }}</p>
+        <P>{{ category.id }}</P>
         </li>
     {% endfor %}
     </ul>

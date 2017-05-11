@@ -1,40 +1,50 @@
-from django.shortcuts import render_to_response, get_object_or_404
-from django.contrib import auth
+from django.shortcuts import get_object_or_404
 from .models import Category, Product
-from django.db.models.options import Options
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.http import Http404
+from django.views.generic import ListView, DetailView
 import datetime
 
 
-def categorylist(request):
-    args = {}
-    args['username'] = auth.get_user(request).username
-    args['categorys'] = Category.objects.all()
-    return render_to_response('categorylist.html', args)
+class IndexView(ListView):
+    context_object_name = 'home_list'
+    template_name = 'itemslist.html'
+    queryset = Category.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['products'] = Product.objects.all()
+        return context
 
 
-def productslist(request, category_slug):
-    args = {}
-    category = Category.objects.get(slug=category_slug)
-    args['products'] = Product.objects.filter(category=category.id)
-    args['category_slug'] = category_slug
-    return render_to_response('productslist.html', args)
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'categorylist.html'
 
 
-def productditail(request, product_slug, category_slug):
-    args = {}
-    args['product'] = get_object_or_404(Product, slug=product_slug)
-    return render_to_response('productditail.html', args)
+class ProductListView(ListView):
+    model = Product
+    template_name = 'productslist.html'
 
-def lastadded(request):
-    user = auth.get_user(request).username
-    args = {}
-    if user:
-        now = datetime.datetime.now()
-        earlier = now - datetime.timedelta(hours=24)
-        args['lastproducts'] = Product.objects.filter(created_at__gt=earlier)
-        args['username'] = user
-    else:
-        args['masseg'] = 'Available only to registered users'
 
-    return render_to_response('lastadded.html', args)
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'productditail.html'
 
+    def get_object(self, *args, **kwargs):
+        category = get_object_or_404(Category, slug=self.kwargs['category_slug'])
+        if not category:
+            raise Http404
+        return Product.objects.get(slug=self.kwargs['slug'])
+
+
+@method_decorator(login_required, name='dispatch')
+class LastAdded(ListView):
+    model = Product
+    queryset = Product.objects.filter(created_at__gt=datetime.datetime.now() - datetime.timedelta(hours=24))
+    template_name = 'lastadded.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(LastAdded, self).dispatch(*args, **kwargs)

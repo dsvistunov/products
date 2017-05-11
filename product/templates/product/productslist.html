@@ -3,9 +3,9 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-    {% for product in products %}
-        <p><a href="{% url 'products:product' category_slug product.slug %}">{{ product.name }}</a></p>
+    {% for product in object_list %}
+        <p><a href="{% url 'products:product' product.category product.slug %}">{{ product.name }}</a></p>
         <p>{{ product.description }}</p>
         <p>{{ product.price }}</p>
-        {% endfor %}
+    {% endfor %}
 {% endblock %}
