@@ -27,6 +27,12 @@ class ProductListView(ListView):
     model = Product
     template_name = 'productslist.html'
 
+    def get_queryset(self, *args, **kwargs):
+        category = get_object_or_404(Category, slug=self.kwargs['slug'])
+        if not category:
+            raise Http404
+        return Product.objects.filter(category=category.id)
+
 
 class ProductDetailView(DetailView):
     model = Product
